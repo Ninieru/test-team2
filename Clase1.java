@@ -7,7 +7,7 @@ package proyectogit;
 
 /**
  *
- * @author NERA
+ * @author
  */
 public class Clase1 {
     
