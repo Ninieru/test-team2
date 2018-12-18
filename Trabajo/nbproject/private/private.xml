@@ -3,15 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/web/index.html</file>
-            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/src/java/controlador/Main.java</file>
-            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/web/indexInicio.jsp</file>
-            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/src/java/servicios/proyecto/ProyectoService.java</file>
-            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/web/prueba.jsp</file>
-            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/src/java/hibernate.cfg.xml</file>
-            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/src/java/servicios/cliente/ClienteService.java</file>
-            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/src/java/controlador/Inicio.java</file>
+            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/src/java/bd/Mockito.java</file>
+            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/src/java/modelo/Chatgrupo.java</file>
+            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/src/java/modelo/UsuarioChatGrupo.java</file>
+            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/src/java/modelo/Prioridad.java</file>
+            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/src/java/modelo/Requisito.java</file>
+            <file>file:/C:/Users/LUCIA/Documents/NetBeansProjects/Trabajo/src/java/modelo/Mensaje.java</file>
         </group>
     </open-files>
 </project-private>
