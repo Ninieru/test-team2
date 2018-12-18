@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class catalog="teletrabajo" name="com.rawson.app.modelo.dominio.Alerta" optimistic-lock="version" table="alerta">
+    <id name="idAlerta" type="java.lang.Integer">
+      <column name="idAlerta"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="com.rawson.app.modelo.dominio.Tarea" fetch="select" name="tarea">
+      <column name="idTarea" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.rawson.app.modelo.dominio.Tipoalerta" fetch="select" name="tipoalerta">
+      <column name="idTipoAlerta" not-null="true"/>
+    </many-to-one>
+    <property name="descripcion" type="string">
+      <column length="250" name="descripcion" not-null="true"/>
+    </property>
+    <property name="fecha" type="timestamp">
+      <column length="19" name="fecha" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="usuarioAlertas" table="usuario_alerta">
+      <key>
+        <column name="idAlerta" not-null="true"/>
+      </key>
+      <one-to-many class="com.rawson.app.modelo.dominio.UsuarioAlerta"/>
+    </set>
+  </class>
+</hibernate-mapping>

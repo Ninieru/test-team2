@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-dic-2018 16:06:53 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping package="com.rawson.app.modelo.dominio">
+  <class catalog="teletrabajo" name="Tipoalerta" optimistic-lock="version" table="tipoalerta">
+    <id name="idTipoAlerta" type="java.lang.Integer">
+      <column name="idTipoAlerta"/>
+      <generator class="identity"/>
+    </id>
+    <property name="tipoAlerta" type="string">
+      <column length="45" name="tipoAlerta" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="alertas" table="alerta">
+      <key>
+        <column name="idTipoAlerta" not-null="true"/>
+      </key>
+      <one-to-many class="Alerta"/>
+    </set>
+  </class>
+</hibernate-mapping>

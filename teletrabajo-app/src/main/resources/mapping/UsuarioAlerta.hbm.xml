@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-dic-2018 16:06:53 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="teletrabajo" name="com.rawson.app.modelo.dominio.UsuarioAlerta" optimistic-lock="version" table="usuario_alerta">
+    <composite-id class="com.rawson.app.modelo.dominio.UsuarioAlertaId" name="id">
+      <key-property name="idUsuario" type="int">
+        <column name="idUsuario"/>
+      </key-property>
+      <key-property name="idAlerta" type="int">
+        <column name="idAlerta"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="com.rawson.app.modelo.dominio.Alerta" fetch="select" insert="false" name="alerta" update="false">
+      <column name="idAlerta" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="com.rawson.app.modelo.dominio.Usuario" fetch="select" insert="false" name="usuario" update="false">
+      <column name="idUsuario" not-null="true"/>
+    </many-to-one>
+    <property name="fechaVisto" type="timestamp">
+      <column length="19" name="fechaVisto"/>
+    </property>
+  </class>
+</hibernate-mapping>
