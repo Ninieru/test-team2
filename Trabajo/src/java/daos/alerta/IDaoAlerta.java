@@ -10,12 +10,13 @@ import excepciones.InstanceException;
 import java.util.List;
 import modelo.Alerta;
 import modelo.Usuario;
+import org.hibernate.Session;
 
 /**
  *
  * @author LUCIA
  */
 public interface IDaoAlerta extends IGenericDao<Alerta,Integer>{
-    public List<Alerta> getByParameter(String parameter, String value) throws InstanceException;
+    public List<Alerta> getByParameter(String parameter, String value, Session session) throws InstanceException;
     
 }

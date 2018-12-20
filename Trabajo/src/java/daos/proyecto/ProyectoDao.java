@@ -7,8 +7,6 @@ package daos.proyecto;
 
 import daos.GenericDao;
 import modelo.Proyecto;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *
@@ -16,8 +14,5 @@ import org.hibernate.Transaction;
  */
 public class ProyectoDao extends GenericDao <Proyecto,Integer> implements IProyectoDao{
     
-    public ProyectoDao(Session s, Transaction t) {
-        super(s, t);
-    }
-    
+
 }

@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controlador;
+package daos.tipoAlerta;
 
-import excepciones.InstanceException;
+import daos.GenericDao;
+import modelo.Tipoalerta;
 
 /**
  *
  * @author LUCIA
  */
-public class Main {
-
-    public static void main(String args[]) throws InstanceException {
-
-}
+public class TipoAlertaDao extends GenericDao <Tipoalerta,Integer> implements ITipoAlertaDao{
+    
 }

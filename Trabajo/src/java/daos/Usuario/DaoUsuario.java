@@ -10,7 +10,6 @@ import excepciones.InstanceException;
 import java.util.List;
 import modelo.Usuario;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -18,20 +17,8 @@ import org.hibernate.criterion.Restrictions;
  * @author LUCIA
  */
 public class DaoUsuario extends GenericDao <Usuario,Integer> implements IDaoUsuario{
-  
-//    protected Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//    protected Transaction t = session.beginTransaction();
-   
-    public DaoUsuario(Session s,Transaction t){
-        super(s,t);
-    }
-    
-    public boolean getByParameter(String parameter, String value) throws InstanceException{
-    List<Usuario> result = (List<Usuario>) session.createCriteria(Usuario.class).add(Restrictions.like(parameter,value)).list();
-    if(result.size()!=1){
-        return false;
-    }
-    t.commit();
-    return true;
+ 
+    public List<Usuario> getByParameter(String parameter, String value, Session session) throws InstanceException{
+    return (List<Usuario>) session.createCriteria(Usuario.class).add(Restrictions.like(parameter,value)).list();
     }
 }

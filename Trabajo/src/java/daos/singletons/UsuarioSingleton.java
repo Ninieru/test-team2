@@ -24,23 +24,22 @@ public class UsuarioSingleton {
     }
 
     @SuppressWarnings("rawtypes")
-    private static DaoUsuario getInstance(Session s, Transaction t) {
+    private static DaoUsuario getInstance() {
         try {
  
             String daoClassName = CLASS_NAME_PARAMETER;
             Class daoClass = Class.forName(daoClassName);
-            return new DaoUsuario(s,t);
+            return new DaoUsuario();
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
 
     }
     
-     public synchronized static DaoUsuario getDao(Session s, Transaction t) {
+     public synchronized static DaoUsuario getDao() {
 
         if (dao == null) {
-            System.out.println("dao nulo");
-            dao = getInstance(s,t);
+            dao = getInstance();
         }
         return dao;
     }

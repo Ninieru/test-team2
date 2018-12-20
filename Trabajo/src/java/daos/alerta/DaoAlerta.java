@@ -6,13 +6,11 @@
 package daos.alerta;
 
 import daos.GenericDao;
-import daos.Usuario.IDaoUsuario;
 import excepciones.InstanceException;
 import java.util.List;
 import modelo.Alerta;
 import modelo.Usuario;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -21,11 +19,7 @@ import org.hibernate.criterion.Restrictions;
  */
 public class DaoAlerta extends GenericDao<Alerta, Integer> implements IDaoAlerta {
 
-    public DaoAlerta(Session s, Transaction t) {
-        super(s, t);
-    }
-
-    public List<Alerta> getByParameter(String parameter, String value) throws InstanceException {
+    public List<Alerta> getByParameter(String parameter, String value, Session session) throws InstanceException {
         return (List<Alerta>) session.createCriteria(Usuario.class).add(Restrictions.like(parameter, value)).list();
       
     }

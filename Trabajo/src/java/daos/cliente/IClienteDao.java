@@ -8,6 +8,7 @@ package daos.cliente;
 import excepciones.InstanceException;
 import java.util.List;
 import modelo.Cliente;
+import org.hibernate.Session;
 
 /**
  *
@@ -15,5 +16,5 @@ import modelo.Cliente;
  */
 public interface IClienteDao {
     
-    public List<Cliente> getByParameter(String parameter, String value) throws InstanceException;
+    public List<Cliente> getByParameter(String parameter, String value, Session session) throws InstanceException;
 }

@@ -25,24 +25,22 @@ public class AlertaSingleton {
     }
 
     @SuppressWarnings("rawtypes")
-    private static DaoAlerta getInstance(Session s, Transaction t) {
+    private static DaoAlerta getInstance() {
         try {
  
             String daoClassName = CLASS_NAME_PARAMETER;
             Class daoClass = Class.forName(daoClassName);
-            return new DaoAlerta(s,t);
+            return new DaoAlerta();
         } catch (Exception e) {
-            System.out.println("exception: "+t.toString());
             throw new RuntimeException(e.getMessage());
         }
 
     }
     
-     public synchronized static DaoAlerta getDao(Session s, Transaction t) {
+     public synchronized static DaoAlerta getDao() {
 
         if (dao == null) {
-            System.out.println("dao nulo");
-            dao = getInstance(s,t);
+            dao = getInstance();
         }
         return dao;
     }

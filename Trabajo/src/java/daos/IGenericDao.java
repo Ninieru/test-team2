@@ -8,6 +8,8 @@ package daos;
 import java.io.Serializable;
 import java.util.List;
 import javax.management.InstanceNotFoundException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -15,16 +17,16 @@ import javax.management.InstanceNotFoundException;
  */
 public interface IGenericDao<E, PK extends Serializable> {
 
-    public E save(E entity);
+    public void save(E entity, Session session);
 
-    public void update(E entity);
+    public void update(E entity, Session session);
 
-    public E findbyId(PK id) throws InstanceNotFoundException;
+    public E findbyId(PK id, Session session) throws InstanceNotFoundException;
 
-    public boolean exist(PK id);
+    public boolean exist(PK id,Session session);
 
-    public List<E> findAll();
+    public List<E> findAll(Session session);
 
 
-    public void remove(E entity);
+    public void remove(E entity, Session session);
 }

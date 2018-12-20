@@ -23,18 +23,18 @@ import org.hibernate.Transaction;
  * @author LUCIA
  */
 public class ClienteService {
-    
-//    protected Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//    protected Transaction t = session.beginTransaction();
+
+    private Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    private Transaction t = session.beginTransaction();
     private ClienteDao dao;
     
     public ClienteService(Session session, Transaction t){
-        dao = ClienteSingleton.getDao(session, t);
+        dao = ClienteSingleton.getDao();
     }
-    public Cliente insertarCliente(Cliente cliente) throws InstanceException{
+    public void insertarCliente(Cliente cliente) throws InstanceException{
     
         try{
-         return dao.save(cliente);
+          dao.save(cliente, session);
         }catch(HibernateException e){
             throw new InstanceException();
         }
@@ -43,7 +43,7 @@ public class ClienteService {
     
     public void updateCliente(Cliente client) throws InstanceException{
         try{
-            dao.update(client);
+            dao.update(client,session);
         }catch(HibernateException e){
             throw new InstanceException();
         }
@@ -52,7 +52,7 @@ public class ClienteService {
     public Cliente getByCIF(String cif) throws InstanceException{
         List<Cliente> result = new ArrayList();
         try{
-            result = dao.getByParameter("cif", cif);
+            result = dao.getByParameter("cif", cif,session);
             if(result.size()!=1)
                 throw new InstanceException();
         }catch(HibernateException e){
@@ -63,7 +63,7 @@ public class ClienteService {
     
     public List<Cliente> getByName(String name) throws InstanceException{
         try{
-            return dao.getByParameter("nombre", name);
+            return dao.getByParameter("nombre", name,session);
         }catch(HibernateException e){
             throw new InstanceException();
         }

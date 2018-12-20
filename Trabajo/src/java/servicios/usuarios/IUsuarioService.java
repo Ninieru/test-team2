@@ -5,7 +5,7 @@
  */
 package servicios.usuarios;
 
-import excepciones.DuplicateInstance;
+
 import excepciones.InstanceException;
 import java.util.List;
 import javax.management.InstanceNotFoundException;
@@ -16,8 +16,8 @@ import modelo.Usuario;
  * @author LUCIA
  */
 public interface IUsuarioService {
-    public Usuario insertarUsuario(Usuario u) throws DuplicateInstance, InstanceException;
-    public void actualizar(Usuario u) throws InstanceException;
-    public Usuario obtenerPorId(int id) throws InstanceNotFoundException;
-    public List<Usuario> getUsuarios() throws InstanceException;
+//    public Usuario insertarUsuario(Usuario u) throws DuplicateInstance, InstanceException;
+//    public void actualizar(Usuario u) throws InstanceException;
+//    public Usuario obtenerPorId(int id) throws InstanceNotFoundException;
+//    public List<Usuario> getUsuarios() throws InstanceException;
 }

@@ -66,10 +66,10 @@ Contributor(s):
     <mapping resource="modelo/UsuarioAlerta.hbm.xml"/>
     <mapping resource="modelo/Alerta.hbm.xml"/>
     <mapping resource="modelo/Tipoalerta.hbm.xml"/>
-    <mapping resource="modelo/UsuarioChatGrupo.hbm.xml"/>
-    <mapping resource="modelo/RolPermiso.hbm.xml"/>
+    <!--<mapping resource="modelo/UsuarioChatGrupo.hbm.xml"/>-->
+   <!-- <mapping resource="modelo/RolPermiso.hbm.xml"/>
     <mapping resource="modelo/TareaInforme.hbm.xml"/>
     <mapping resource="modelo/TareaUsuario.hbm.xml"/>
-    <mapping resource="modelo/UsuarioCliente.hbm.xml"/>
+    <mapping resource="modelo/UsuarioCliente.hbm.xml"/>-->
   </session-factory>
 </hibernate-configuration>

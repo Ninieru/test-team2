@@ -6,8 +6,10 @@
 package daos.Usuario;
 
 import daos.IGenericDao;
+import excepciones.InstanceException;
 import java.util.List;
 import modelo.Usuario;
+import org.hibernate.Session;
 
 
 
@@ -16,10 +18,6 @@ import modelo.Usuario;
  * @author LUCIA
  */
 public interface IDaoUsuario extends IGenericDao<Usuario,Integer>{
-    
-//    public Usuario saveUsuario(Usuario u);
-//    public void update(Usuario u);
-//    public Usuario getUsuario(int id);
-//    public List<Usuario> getUsuarios();
+    public List<Usuario> getByParameter(String parameter, String value, Session session) throws InstanceException;
     
 }

@@ -5,10 +5,14 @@
  */
 package servicios.alerta;
 
+import excepciones.InstanceException;
+import modelo.Alerta;
+
 /**
  *
  * @author LUCIA
  */
 public interface IAlertaService {
     
+    public void insertarAlerta(Alerta alerta) throws InstanceException;
 }

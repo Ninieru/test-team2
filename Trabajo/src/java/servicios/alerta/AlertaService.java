@@ -22,13 +22,13 @@ import org.hibernate.Transaction;
  */
 public class AlertaService {
 
-    protected Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-    protected Transaction t = session.beginTransaction();
-    private DaoAlerta dao = AlertaSingleton.getDao(session, t);
+    private Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    private Transaction t = session.beginTransaction();
+    private DaoAlerta dao = AlertaSingleton.getDao();
 
-    public Alerta insertarAlerta(Alerta alerta) throws InstanceException {
+    public void insertarAlerta(Alerta alerta) throws InstanceException {
         try {
-            return dao.save(alerta);
+             dao.save(alerta,session);
         } catch (HibernateException e) {
             throw new InstanceException();
         }

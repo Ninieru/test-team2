@@ -29,6 +29,9 @@ import servicios.proyecto.ProyectoService;
 @WebServlet(name = "Inicio", urlPatterns = {"/Inicio"})
 public class Inicio extends HttpServlet {
 
+    private Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    private Transaction t = session.beginTransaction();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,15 +41,14 @@ public class Inicio extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-    Transaction t = session.beginTransaction();
-
+//    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//    Transaction t = session.beginTransaction();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, InstanceNotFoundException, InstanceException {
-        ProyectoService ser = new ProyectoService(session,t);
+        ProyectoService ser = new ProyectoService();
         Proyecto proy = ser.obtenerPorId(1);
-        
-        request.setAttribute("proyecto",proy );
+
+        request.setAttribute("proyecto", proy);
         request.getRequestDispatcher("indexInicio.jsp").forward(request, response);
 //        response.setContentType("text/html;charset=UTF-8");
 //        try (PrintWriter out = response.getWriter()) {
@@ -73,7 +75,7 @@ public class Inicio extends HttpServlet {
 //           
 //            out.println("</body>");
 //            out.println("</html>");
-        }    
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -108,11 +110,14 @@ public class Inicio extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            ProyectoService ser = new ProyectoService(session,t);
-        List<Proyecto> proy = ser.obtenerProyectos();
-            request.getSession().setAttribute("proyecto",proy);
+            ProyectoService ser = new ProyectoService();
+            System.out.println("cargando servlet");
+            List<Proyecto> proy = ser.obtenerProyectos(session);
+
+            System.out.println("tam: " + proy.size());
+            request.getSession().setAttribute("proyecto", proy);
             //request.getSession().setAttribute("proyectoName", proy.getFfp());
-      
+
             processRequest(request, response);
         } catch (InstanceNotFoundException ex) {
             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);

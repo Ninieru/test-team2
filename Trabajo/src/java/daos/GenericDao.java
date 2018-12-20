@@ -5,18 +5,12 @@
  */
 package daos;
 
-import controlador.HibernateUtil;
-import excepciones.InstanceException;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.List;
 import javax.management.InstanceNotFoundException;
-import javax.persistence.Entity;
-import modelo.Usuario;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -28,27 +22,21 @@ import org.hibernate.criterion.Restrictions;
 public class GenericDao<E, PK extends Serializable> implements IGenericDao<E, PK> {
 
     private Class<E> entityClass;
-    protected Session session =null;
-    protected Transaction t=null;
 
-    public GenericDao(Session s, Transaction t) {
+    public GenericDao() {
         entityClass = (Class<E>) ((ParameterizedType) getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[0];
-        this.session=s;
-        this.t=t;
-
 
     }
     
     
 
     @Override
-    public E save(E entity) {
+    public void save(E entity, Session session) {
 
         try{
-        int id = (int) session.save(entity);
-        t.commit();
-        return entity;
+         session.save(entity);
+  
         }catch(HibernateException e){
             throw new HibernateException(e);
         }
@@ -56,10 +44,10 @@ public class GenericDao<E, PK extends Serializable> implements IGenericDao<E, PK
     }
 
     @Override
-    public void update(Object entity) {
+    public void update(Object entity, Session session) {
         try{
              session.update(entity);
-        t.commit();
+ 
         }catch(HibernateException e){
             throw new HibernateException(e);
         }
@@ -69,12 +57,12 @@ public class GenericDao<E, PK extends Serializable> implements IGenericDao<E, PK
     }
 
     @Override
-    public boolean exist(Serializable id) {
+    public boolean exist(Serializable id, Session session) {
         return session.createCriteria(entityClass).add(Restrictions.idEq(id)).setProjection(Projections.id()).uniqueResult() != null;
     }
 
     @Override
-    public List findAll() {
+    public List findAll(Session session) {
         try{
             return session.createCriteria(this.entityClass).list();
         }catch(HibernateException e){
@@ -85,14 +73,14 @@ public class GenericDao<E, PK extends Serializable> implements IGenericDao<E, PK
 
 
     @Override
-    public void remove(E entity) {
+    public void remove(E entity, Session session) {
         session.delete(entity);
-        t.commit();
+        
 
     }
 
     @Override
-    public E findbyId(PK id) throws InstanceNotFoundException {
+    public E findbyId(PK id, Session session) throws InstanceNotFoundException {
         
         E  entidad= (E) session.get(entityClass, id);
         if(entidad==null){

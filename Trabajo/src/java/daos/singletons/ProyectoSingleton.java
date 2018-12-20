@@ -24,22 +24,22 @@ public class ProyectoSingleton {
     }
 
     @SuppressWarnings("rawtypes")
-    private static ProyectoDao getInstance(Session s, Transaction t) {
+    private static ProyectoDao getInstance() {
         try {
  
             String daoClassName = CLASS_NAME_PARAMETER;
             Class daoClass = Class.forName(daoClassName);
-            return new ProyectoDao(s,t);
+            return new ProyectoDao();
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
 
     }
     
-     public synchronized static ProyectoDao getDao(Session s, Transaction t) {
+     public synchronized static ProyectoDao getDao() {
 
         if (dao == null) {
-            dao = getInstance(s,t);
+            dao = getInstance();
         }
         return dao;
     }

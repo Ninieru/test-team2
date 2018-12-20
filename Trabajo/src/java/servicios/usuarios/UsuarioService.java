@@ -10,7 +10,7 @@ package servicios.usuarios;
 import controlador.HibernateUtil;
 import daos.Usuario.DaoUsuario;
 import daos.singletons.UsuarioSingleton;
-import excepciones.DuplicateInstance;
+
 import excepciones.InstanceException;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,27 +28,28 @@ import servicios.usuarios.IUsuarioService;
  */
 public class UsuarioService implements IUsuarioService{
 
-    protected Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-    protected Transaction t = session.beginTransaction();
-    private DaoUsuario dao = UsuarioSingleton.getDao(session, t);
+    private DaoUsuario dao = UsuarioSingleton.getDao();
+    private Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    private Transaction t = session.beginTransaction();
 
 
-    public Usuario insertarUsuario(Usuario u) throws DuplicateInstance, InstanceException {
+    public void insertarUsuario(Usuario u) throws InstanceException{
 
-        boolean dni = dao.getByParameter("dni", u.getDni());
-        boolean email = dao.getByParameter("email", u.getEmail());
-        boolean login = dao.getByParameter("login", u.getLogin());
+        boolean dni = dao.getByParameter("dni", u.getDni(),session).size()==1;
+        boolean email = dao.getByParameter("email", u.getEmail(),session).size()==1;
+        boolean login = dao.getByParameter("login", u.getLogin(),session).size()==1;
         if (dni || email || login) {
             throw new InstanceException();
         }
-        return dao.save(u);
+         dao.save(u,session);
+         t.commit();
 
     }
 
     public void actualizar(Usuario u) throws InstanceException {
 
         try {
-            dao.update(u);
+            dao.update(u, session);
         } catch (HibernateException e) {
             throw new InstanceException();
         }
@@ -56,13 +57,13 @@ public class UsuarioService implements IUsuarioService{
 
     public Usuario obtenerPorId(int id) throws InstanceNotFoundException {
 
-        return dao.findbyId(id);
+        return dao.findbyId(id, session);
     }
 
     public List<Usuario> getUsuarios() throws InstanceException {
 
         try {
-            return dao.findAll();
+            return dao.findAll(session);
         } catch (HibernateException e) {
             throw new InstanceException();
         }

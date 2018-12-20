@@ -20,11 +20,10 @@ import org.hibernate.criterion.Restrictions;
  */
 public class ClienteDao extends GenericDao<Cliente, Integer> implements IClienteDao {
 
-    public ClienteDao(Session s, Transaction t) {
-        super(s, t);
-    }
 
-    public List<Cliente> getByParameter(String parameter, String value) throws InstanceException {
+
+    @Override
+    public List<Cliente> getByParameter(String parameter, String value, Session session) throws InstanceException {
         List<Cliente> result = (List<Cliente>) session.createCriteria(Cliente.class).add(Restrictions.like(parameter, value)).list();
 
         return result;

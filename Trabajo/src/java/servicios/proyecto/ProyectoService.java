@@ -24,16 +24,14 @@ import org.hibernate.Transaction;
  */
 public class ProyectoService {
     
-//     protected Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//    protected Transaction t = session.beginTransaction();
-    private ProyectoDao dao;
+     protected Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    protected Transaction t = session.beginTransaction();
+    private ProyectoDao dao = ProyectoSingleton.getDao();
     
-    public ProyectoService(Session session, Transaction t){
-        dao = ProyectoSingleton.getDao(session, t);
-    }
-    public Proyecto insertarProyecto(Proyecto proyecto) throws InstanceException{
+  
+    public void insertarProyecto(Proyecto proyecto) throws InstanceException{
         try{
-            return dao.save(proyecto);
+             dao.save(proyecto, session);
         }catch(HibernateException e){
             throw new InstanceException();
         }
@@ -43,16 +41,16 @@ public class ProyectoService {
     public Proyecto obtenerPorId(int id) throws InstanceNotFoundException, InstanceException{
     
         try{
-          return dao.findbyId(id);
+          return dao.findbyId(id, session);
         }catch(HibernateException e){
             throw new InstanceException();
         }
       }
     
-    public List<Proyecto> obtenerProyectos() throws InstanceException{
+    public List<Proyecto> obtenerProyectos(Session session) throws InstanceException{
     
         try{
-        return dao.findAll();
+        return dao.findAll(session);
         }catch(HibernateException e){
             throw new InstanceException();
         }

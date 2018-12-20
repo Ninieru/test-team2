@@ -25,22 +25,22 @@ public class ClienteSingleton {
     }
 
     @SuppressWarnings("rawtypes")
-    private static ClienteDao getInstance(Session s, Transaction t) {
+    private static ClienteDao getInstance() {
         try {
  
             String daoClassName = CLASS_NAME_PARAMETER;
             Class daoClass = Class.forName(daoClassName);
-            return new ClienteDao(s,t);
+            return new ClienteDao();
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
 
     }
     
-     public synchronized static ClienteDao getDao(Session s, Transaction t) {
+     public synchronized static ClienteDao getDao() {
 
         if (dao == null) {
-            dao = getInstance(s,t);
+            dao = getInstance();
         }
         return dao;
     }
