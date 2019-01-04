@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Login</title>
+        <title>JSP Page</title>
          <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -17,13 +17,13 @@
     <link href="css/log.css" rel="stylesheet">
     </head>
     <body class="text-center">
-       <form class="form-signin" action="LoginServlet" method="get">
+       <form class="form-signin" action="LoginServlet" method="get"x>
       <img class="mb-4" src="img/logo.png" alt="Rawson BPO logo" width="200" height="75">
       <h1 class="h3 mb-3 font-weight-normal">Acceso</h1>
-      <!--label for="inputEmail" class="sr-only">Email/login</label-->  Email/login :<input type="text" name="login"/>
-      <!--input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus-->
-      <!--label for="inputPassword" class="sr-only">Contraseña</label-->Password    :<input type="text" name="pass"/>
-      <!--input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required-->
+      <label for="inputEmail" class="sr-only">Email/Login</label>
+      <input type="text" id="inputEmail" class="form-control" placeholder="Email" required name="login"autofocus>
+      <label for="inputPassword" class="sr-only">Contraseña</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="pass" required>
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me">Recordar contraseña

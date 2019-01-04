@@ -63,8 +63,9 @@
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <a href="index.html">
-                        <img src="img/LOGO-RAWSONBPO-9.png" height="70"  alt=""/></a>
+                    <h3><img src="img/LOGO-RAWSONBPO-9.png" height="70"  alt="Rawson BPO logo"/></h3>
+                    <strong><img src="img/LOGO-R-1.png" height="70"  alt="Rawson BPO logo"/></strong>
+
                 </div>
 
                
@@ -89,13 +90,12 @@
                                     <a class="nav-link" href="indexProyectos.jsp">Proyectos</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Chat</a>
+                                    <a class="nav-link" href="chat.jsp">Chat</a>
                                 </li>
 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link " data-toggle="dropdown" href="#" role="button" >Idioma</a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#"></a>
                                         <a class="dropdown-item" href="#">Inglés</a>
                                         <a class="dropdown-item" href="#">Francés</a>
                                     </div>

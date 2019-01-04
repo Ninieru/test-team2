@@ -1,15 +1,16 @@
-<%-- 
+<%@page import="modelo.entidades.Prioridad"%>
+<%@page import="java.util.List"%>
+x<%-- 
     Document   : creaRequisito
     Created on : 02-ene-2019, 10:11:50
     Author     : NERA
 --%>
 
-<%@page import="modelo.entidades.Prioridad"%>
-<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
-<%String opcion = (String) request.getSession().getAttribute("opcion");
+<html>
+    
+    <%String opcion = (String) request.getSession().getAttribute("opcion");
                     String titulo = "";
                     if (opcion.equals("incidencia")) {
                         titulo = "Nueva Incidencia";
@@ -18,7 +19,8 @@
                     }
                 %>
 
-<html>
+    
+    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><%=titulo%></title>
@@ -35,20 +37,22 @@
         <link rel="stylesheet" href="css/style.css">
 
         <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+
     </head>
     <body>
         <div class="wrapper">
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <img src="img/LOGO-RAWSONBPO-9.png" height="70"  alt=""/>
+                    <h3><img src="img/LOGO-RAWSONBPO-9.png" height="70"  alt="Rawson BPO logo"/></h3>
+                    <strong><img src="img/LOGO-R-1.png" height="70"  alt="Rawson BPO logo"/></strong>
 
                 </div>
 
                 <ul class="list-unstyled components">
 
                     <li>
-                        <a href="EnlaceCrearRequisitoServlet?opcion=requisito">
+                        <a href="creaRequisito.jsp">
                             <i class="fas fa-briefcase"></i>
                             Crear Requisito
                         </a>
@@ -56,7 +60,7 @@
                     </li>
 
                     <li >
-                        <a href="EnlaceCrearRequisitoServlet?opcion=incidencia">
+                        <a href="creaIncidencia.jsp">
                             <i class="far fa-copy"></i>
                             Crear Incidencia
                         </a>
@@ -105,7 +109,7 @@
                                 </li>
 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link" data-toggle="dropdown" href="#" role="button" >Idioma</a>
+                                    <a class="nav-link " data-toggle="dropdown" href="#" role="button" >Idioma</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#">Inglés</a>
                                         <a class="dropdown-item" href="#">Francés</a>
@@ -126,19 +130,21 @@
 
                 <!-- formulario-->
 
-
-
-                
                 <p class="crear"><%=titulo%></p>
                 <form action="CrearRequisitoServlet" method="post">
-                    <div class="form-group">
-                        <label for="exampleInputFile">Añade un archivo</label>
-                        <input  required type="file" class="form-control-file" id="InputFile" aria-describedby="fileHelp" name="file">
-                        <small id="fileHelp" class="form-text text-muted">Puedes añadir un archivo con la descripción.</small>
+                    <label style="display: block;">Adjuntar descripción</label>
+
+                    <label class="btn btn-primary añadir" for="my-file-selector">
+                        <input required="true" name="file" id="my-file-selector" type="file" style="display:none" 
+                               onchange="$('#upload-file-info').html(this.files[0].name)">
+                        Adjuntar archivo
+                    </label>
+                    <span class="label label-info añadir" id="upload-file-info"></span>
+
+                    <div class="mx-auto" style="height: 20px;">
+
                     </div>
-
                     <input type="hidden" name="opcion" value=""<%=opcion%>"/>
-
                     <div class="form-group">
                         <label for="Select1">Prioridad</label>
                         <%
@@ -150,7 +156,6 @@
                                     Prioridad p = listaPrioridades.get(i);
                                     String nombre = p.getNombre();
                             %>
-
                             <option value="<%=nombre%>"><%=nombre%></option>
                             <%}%>
                         </select>
@@ -163,11 +168,14 @@
                     <div class="col-4">
 
                     </div>
+
+
                     <div class="col form-group row col-6">
 
                         <button type="submit" class="btn btn-secondary añadir">Añadir</button>
 
                     </div>
+
                     <div class="col-2">
                         <a href="indexProyectos.jsp"><button type="button" class="btn btn-light">Volver</button></a>
 
@@ -180,5 +188,8 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
         <script src="js/js.js"></script>
+
+
+
     </body>
 </html>

@@ -61,7 +61,8 @@
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <img src="img/LOGO-RAWSONBPO-9.png" height="70"  alt="logo-rawson"/>
+                    <h3><img src="img/LOGO-RAWSONBPO-9.png" height="70"  alt="Rawson BPO logo"/></h3>
+                    <strong><img src="img/LOGO-R-1.png" height="70"  alt="Rawson BPO logo"/></strong>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -80,14 +81,14 @@
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="repositorio.jsp">
                             <i class="glyphicon glyphicon-cloud"></i>
                             Repositorio
                         </a>
                     </li>
 
                     <li >
-                        <a href="#">
+                        <a href="creaAlerta.jsp">
                             <i class="glyphicon glyphicon-flag"></i>
                             Crear Alerta
                         </a>
@@ -120,13 +121,12 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link " data-toggle="dropdown" href="#" role="button" >Idioma</a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#"></a>
                                         <a class="dropdown-item" href="#">Inglés</a>
                                         <a class="dropdown-item" href="#">Francés</a>
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Perfil</a>
+                                    <a class="nav-link" href="perfil.jsp">Perfil</a>
                                 </li>
                             </ul>
                         </div>
@@ -174,23 +174,23 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <% List<Requisito> listaRequisitos = (List<Requisito>) session.getAttribute("listaRequisitos");
-                                            for (int i = 0; i < listaRequisitos.size(); i++) {
-                                                Requisito requisito = listaRequisitos.get(i);
-                                                int id = requisito.getIdRequisito();
-                                                boolean finalizado = requisito.isFinalizado();
-                                                String estado = (finalizado ? "FINALIZADO" : "EN CURSO");
-                                                Date fecha = requisito.getFecha();
-                                                String fechaS = "";
-                                                if (fecha != null) {
-                                                    fechaS = new SimpleDateFormat("dd/MM/yyyy").format(fecha).toString();
-                                                } else {
-                                                    fechaS = "No establecida";
-                                                }
-                                                String prioridad = requisito.getPrioridad().getNombre();
-                                                String ruta = requisito.getRuta();
-                                        %>
-                                        
+                                            <% List<Requisito> listaRequisitos = (List<Requisito>) session.getAttribute("listaRequisitos");
+                                                for (int i = 0; i < listaRequisitos.size(); i++) {
+                                                    Requisito requisito = listaRequisitos.get(i);
+                                                    int id = requisito.getIdRequisito();
+                                                    boolean finalizado = requisito.isFinalizado();
+                                                    String estado = (finalizado ? "FINALIZADO" : "EN CURSO");
+                                                    Date fecha = requisito.getFecha();
+                                                    String fechaS = "";
+                                                    if (fecha != null) {
+                                                        fechaS = new SimpleDateFormat("dd/MM/yyyy").format(fecha).toString();
+                                                    } else {
+                                                        fechaS = "No establecida";
+                                                    }
+                                                    String prioridad = requisito.getPrioridad().getNombre();
+                                                    String ruta = requisito.getRuta();
+                                            %>
+
                                             <tr>
                                                 <th><%=id%></th>
                                                 <td><%=estado%></td>
@@ -202,8 +202,8 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                        
-                                        <%}%>
+
+                                            <%}%>
                                         </tbody>
                                     </table>
                                 </div>
@@ -236,23 +236,23 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <% List<Requisito> listaIncidencia = (List<Requisito>) session.getAttribute("listaIncidencias");
-                                            for (int i = 0; i < listaIncidencia.size(); i++) {
-                                                Requisito incidencia = listaIncidencia.get(i);
-                                                int id = incidencia.getIdRequisito();
-                                                boolean finalizado = incidencia.isFinalizado();
-                                                String estado = (finalizado ? "FINALIZADO" : "EN CURSO");
-                                                Date fecha = incidencia.getFecha();
-                                                String fechaS = "";
-                                                if (fecha != null) {
-                                                    fechaS = new SimpleDateFormat("dd/MM/yyyy").format(fecha).toString();
-                                                } else {
-                                                    fechaS = "No establecida";
-                                                }
-                                                String prioridad = incidencia.getPrioridad().getNombre();
-                                                String ruta = incidencia.getRuta();
-                                        %>
-                                        
+                                            <% List<Requisito> listaIncidencia = (List<Requisito>) session.getAttribute("listaIncidencias");
+                                                for (int i = 0; i < listaIncidencia.size(); i++) {
+                                                    Requisito incidencia = listaIncidencia.get(i);
+                                                    int id = incidencia.getIdRequisito();
+                                                    boolean finalizado = incidencia.isFinalizado();
+                                                    String estado = (finalizado ? "FINALIZADO" : "EN CURSO");
+                                                    Date fecha = incidencia.getFecha();
+                                                    String fechaS = "";
+                                                    if (fecha != null) {
+                                                        fechaS = new SimpleDateFormat("dd/MM/yyyy").format(fecha).toString();
+                                                    } else {
+                                                        fechaS = "No establecida";
+                                                    }
+                                                    String prioridad = incidencia.getPrioridad().getNombre();
+                                                    String ruta = incidencia.getRuta();
+                                            %>
+
                                             <tr>
                                                 <th><%=id%></th>
                                                 <td><%=estado%></td>
@@ -265,7 +265,7 @@
                                                 </td>
                                             </tr>
 
-                                        <%}%>
+                                            <%}%>
                                         </tbody>
                                     </table>
                                 </div>
@@ -273,7 +273,7 @@
                         </div>
 
                         <!-- CABECERA ALERTAS -->
-                        
+
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingThree9">
                                 <h4 class="panel-title">
@@ -297,38 +297,38 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <%
-                                            Set<Alerta> conjuntoAlerta = (Set<Alerta>) session.getAttribute("conjuntoAlerta");
-                                            for (Alerta a : conjuntoAlerta) {
-                                                String descripcion = a.getDescripcion();
-                                                String tarea = a.getTarea().getDescripcion();
-                                                String tipo = a.getTipoalerta().getTipoAlerta();
-                                                Date fecha = a.getFecha();
-                                                String fechaS = "";
-                                                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                                                if (fecha != null) {
-                                                    fechaS = new SimpleDateFormat("dd/MM/yyyy").format(fecha).toString();
-                                                } else {
-                                                    fechaS = "No establecida";
-                                                }
-                                        %>
-                                        
+                                            <%
+                                                Set<Alerta> conjuntoAlerta = (Set<Alerta>) session.getAttribute("conjuntoAlerta");
+                                                for (Alerta a : conjuntoAlerta) {
+                                                    String descripcion = a.getDescripcion();
+                                                    String tarea = a.getTarea().getDescripcion();
+                                                    String tipo = a.getTipoalerta().getTipoAlerta();
+                                                    Date fecha = a.getFecha();
+                                                    String fechaS = "";
+                                                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                                                    if (fecha != null) {
+                                                        fechaS = new SimpleDateFormat("dd/MM/yyyy").format(fecha).toString();
+                                                    } else {
+                                                        fechaS = "No establecida";
+                                                    }
+                                            %>
+
                                             <tr>
                                                 <th><%=descripcion%></th>
                                                 <td><%=tarea%></td>
                                                 <td><%=tipo%></td>
                                                 <td><%=fechaS%></td>
                                             </tr>
-                                        
-                                        <%}%>
+
+                                            <%}%>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                                    
+
                         <!-- CABECERA INFORMES -->
-                        
+
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingTwo9">
                                 <h4 class="panel-title">
@@ -338,7 +338,7 @@
                                 </h4>
                             </div>
                             <div id="collapseTwo9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo9">
-                                
+
                                 <!-- TABLA INFORMES -->
 
                                 <div class="table-responsive-sm">
@@ -353,21 +353,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <%
-                                            Set<Informe> conjuntoInformes = (Set<Informe>) session.getAttribute("conjuntoInformes");
-                                            for (Informe i : conjuntoInformes) {
-                                                int id = i.getIdInforme();
-                                                Date fecha = i.getFecha();
-                                                String fechaS = "";
-                                                if (fecha != null) {
-                                                    fechaS = new SimpleDateFormat("dd/MM/yyyy").format(fecha).toString();
-                                                } else {
-                                                    fechaS = "No establecida";
-                                                }
-                                                String autor = i.getUsuario().getNombre();
-                                                String ruta = i.getRutaInforme();
-                                        %>
-                                        
+                                            <%
+                                                Set<Informe> conjuntoInformes = (Set<Informe>) session.getAttribute("conjuntoInformes");
+                                                for (Informe i : conjuntoInformes) {
+                                                    int id = i.getIdInforme();
+                                                    Date fecha = i.getFecha();
+                                                    String fechaS = "";
+                                                    if (fecha != null) {
+                                                        fechaS = new SimpleDateFormat("dd/MM/yyyy").format(fecha).toString();
+                                                    } else {
+                                                        fechaS = "No establecida";
+                                                    }
+                                                    String autor = i.getUsuario().getNombre();
+                                                    String ruta = i.getRutaInforme();
+                                            %>
+
                                             <tr>
                                                 <th><%=id%></th>
                                                 <td><%=fechaS%></td>
@@ -378,8 +378,8 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                        
-                                        <%}%>
+
+                                            <%}%>
                                         </tbody>
                                     </table>
                                 </div>
@@ -390,12 +390,12 @@
             </div>
         </div>
 
-    <div class="line"></div>
+        <div class="line"></div>
 
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
-<script src="js/js.js"></script>
+        <script src="js/js.js"></script>
 
-</body>
+    </body>
 </html>

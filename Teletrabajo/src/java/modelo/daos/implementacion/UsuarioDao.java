@@ -11,6 +11,7 @@ import modelo.daos.interfaces.IUsuarioDao;
 import modelo.entidades.Usuario;
 import modelo.excepciones.InstanceException;
 import org.hibernate.HibernateException;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -35,10 +36,11 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> implements IUsuario
     }
 
     public Usuario usuarioLogin(String login, String pass) {
-        return (Usuario)  getSession().createCriteria(Usuario.class).add(Restrictions.like("login",login)).add(Restrictions.like("password", pass)).uniqueResult();
+       
+        return (Usuario)  getSession().createCriteria(Usuario.class).add(Restrictions.ilike("login",login,MatchMode.EXACT)).add(Restrictions.ilike("password", pass)).uniqueResult();
     }
     public Usuario usuarioMail(String mail, String pass) {
-        return (Usuario)  getSession().createCriteria(Usuario.class).add(Restrictions.like("email",mail)).add(Restrictions.like("password", pass)).uniqueResult();
+        return (Usuario)  getSession().createCriteria(Usuario.class).add(Restrictions.eq("email",mail)).add(Restrictions.eq("password", pass)).uniqueResult();
     
     }
 }
