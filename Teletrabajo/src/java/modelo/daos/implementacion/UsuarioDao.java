@@ -37,7 +37,7 @@ public class UsuarioDao extends GenericDao<Usuario, Integer> implements IUsuario
 
     public Usuario usuarioLogin(String login, String pass) {
        
-        return (Usuario)  getSession().createCriteria(Usuario.class).add(Restrictions.ilike("login",login,MatchMode.EXACT)).add(Restrictions.ilike("password", pass)).uniqueResult();
+        return (Usuario)  getSession().createCriteria(Usuario.class).add(Restrictions.like("login",login,MatchMode.EXACT)).add(Restrictions.ilike("password", pass)).uniqueResult();
     }
     public Usuario usuarioMail(String mail, String pass) {
         return (Usuario)  getSession().createCriteria(Usuario.class).add(Restrictions.eq("email",mail)).add(Restrictions.eq("password", pass)).uniqueResult();

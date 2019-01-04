@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
             if (u == null) {
                 u = uM;
             }
-
+request.getSession().setAttribute("error","");
             if (servicio.esSuperAdmin(u.getIdUsuario())) {
                 response.sendRedirect("prueba.jsp");//JSP SUPER ADMINISTRADOR
             }
@@ -57,8 +57,8 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("index.jsp");
             }
         } else {
-       
-            response.sendRedirect("logError.jsp");
+             request.getSession().setAttribute("loginCorrecto", "NO");
+            response.sendRedirect("log.jsp");
         }
         
     }
