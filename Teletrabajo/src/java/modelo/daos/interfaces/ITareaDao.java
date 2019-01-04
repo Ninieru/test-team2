@@ -1,5 +1,5 @@
 package modelo.daos.interfaces;
-import modelo.daos.IGenericDao;
+import modelo.daos.interfaces.IGenericDao;
 import modelo.entidades.Tarea;
 /**
  *

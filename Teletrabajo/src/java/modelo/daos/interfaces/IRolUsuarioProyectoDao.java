@@ -1,7 +1,6 @@
 package modelo.daos.interfaces;
 
 
-import modelo.daos.IGenericDao;
 import java.util.List;
 import modelo.entidades.RolUsuarioProyecto;
 import modelo.entidades.RolUsuarioProyectoId;

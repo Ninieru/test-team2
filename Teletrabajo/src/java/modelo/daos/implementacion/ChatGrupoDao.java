@@ -6,14 +6,15 @@ package modelo.daos.implementacion;
  * and open the template in the editor.
  */
 
-import modelo.daos.GenericDao;
 import modelo.daos.interfaces.IChatGrupoDao;
 import modelo.entidades.Chatgrupo;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author hmia
  */
+@Repository
 public class ChatGrupoDao extends GenericDao<Chatgrupo, Integer> implements IChatGrupoDao {
 
 }

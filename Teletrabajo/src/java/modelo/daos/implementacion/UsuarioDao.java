@@ -6,17 +6,39 @@ package modelo.daos.implementacion;
  and open the template in the editor.
  */
 
-import modelo.daos.GenericDao;
+import java.util.List;
 import modelo.daos.interfaces.IUsuarioDao;
 import modelo.entidades.Usuario;
+import modelo.excepciones.InstanceException;
+import org.hibernate.HibernateException;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+
 
 /**
  *
  * @author Arlen
  */
-
 @Repository
 public class UsuarioDao extends GenericDao<Usuario, Integer> implements IUsuarioDao {
 
+      public Usuario busquedaPorLogin(String login) throws InstanceException{
+        try{
+		return (Usuario) getSession().createCriteria(Usuario.class).add(Restrictions.like("login",login)).uniqueResult();
+        }catch(HibernateException e){
+            throw new InstanceException();
+        }
+	}
+      
+        public List<Usuario> getByParameter(String parameter, String value) throws InstanceException{
+    return (List<Usuario>)  getSession().createCriteria(Usuario.class).add(Restrictions.like(parameter,value)).list();
+    }
+
+    public Usuario usuarioLogin(String login, String pass) {
+        return (Usuario)  getSession().createCriteria(Usuario.class).add(Restrictions.like("login",login)).add(Restrictions.like("password", pass)).uniqueResult();
+    }
+    public Usuario usuarioMail(String mail, String pass) {
+        return (Usuario)  getSession().createCriteria(Usuario.class).add(Restrictions.like("email",mail)).add(Restrictions.like("password", pass)).uniqueResult();
+    
+    }
 }

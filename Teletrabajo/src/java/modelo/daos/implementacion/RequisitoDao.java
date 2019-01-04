@@ -6,7 +6,6 @@ package modelo.daos.implementacion;
  * and open the template in the editor.
  */
 
-import modelo.daos.GenericDao;
 import modelo.daos.interfaces.IRequisitoDao;
 import modelo.entidades.Requisito;
 import org.springframework.stereotype.Repository;

@@ -6,7 +6,6 @@ package modelo.daos.interfaces;
  and open the template in the editor.
  */
 
-import modelo.daos.IGenericDao;
 import modelo.entidades.Tipopermiso;
 
 

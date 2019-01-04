@@ -6,14 +6,15 @@ package modelo.daos.implementacion;
  * and open the template in the editor.
  */
 
-import modelo.daos.GenericDao;
 import modelo.daos.interfaces.IMensajeDao;
 import modelo.entidades.Mensaje;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author hmia
  */
+@Repository
 public class MensajeDao extends GenericDao<Mensaje, Integer> implements IMensajeDao {
 
 }

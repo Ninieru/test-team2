@@ -6,14 +6,15 @@ package modelo.daos.implementacion;
  and open the template in the editor.
  */
 
-import modelo.daos.GenericDao;
 import modelo.daos.interfaces.ITipoPermisoDao;
 import modelo.entidades.Tipopermiso;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Arlen
  */
+@Repository
 public class TipoPermisoDao extends GenericDao<Tipopermiso, Integer> implements ITipoPermisoDao {
 
 }

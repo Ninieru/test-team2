@@ -1,7 +1,6 @@
 package modelo.daos.implementacion;
 
 
-import modelo.daos.GenericDao;
 import modelo.daos.interfaces.ITareaDao;
 import modelo.entidades.Tarea;
 import org.springframework.stereotype.Repository;

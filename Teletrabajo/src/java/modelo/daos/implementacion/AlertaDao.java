@@ -8,7 +8,6 @@ package modelo.daos.implementacion;
 
 
 
-import modelo.daos.GenericDao;
 import modelo.daos.interfaces.IAlertaDao;
 import modelo.entidades.Alerta;
 import org.springframework.stereotype.Repository;

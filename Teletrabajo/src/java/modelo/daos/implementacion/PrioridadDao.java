@@ -8,8 +8,6 @@ package modelo.daos.implementacion;
 
 
 ;
-import java.util.List;
-import modelo.daos.GenericDao;
 import modelo.daos.interfaces.IPrioridadDao;
 import modelo.entidades.Prioridad;
 import modelo.excepciones.InstanceException;
@@ -21,12 +19,12 @@ import org.springframework.stereotype.Repository;
  *
  * @author hmia
  */
-
 @Repository
 public class PrioridadDao extends GenericDao<Prioridad, Integer> implements IPrioridadDao {
 
-    public Prioridad busquedaPorNombre(String nombre) throws InstanceException{
+        public Prioridad busquedaPorNombre(String nombre) throws InstanceException{
         try{
+            System.out.println("prioridad dao: "+nombre);
 		return (Prioridad) getSession().createCriteria(Prioridad.class).add(Restrictions.like("nombre",nombre)).uniqueResult();
         }catch(HibernateException e){
             throw new InstanceException();

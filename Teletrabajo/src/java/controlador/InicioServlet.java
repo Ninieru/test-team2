@@ -6,6 +6,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,14 +21,11 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.entidades.Informe;
 import modelo.entidades.Proyecto;
 import modelo.entidades.Requisito;
+import modelo.entidades.Alerta;
 import modelo.entidades.Tarea;
 import modelo.servicios.EntidadesService;
-import modelo.servicios.IEntidadesService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.web.context.ContextLoader;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *
@@ -63,18 +61,30 @@ public class InicioServlet extends HttpServlet {
             throws ServletException, IOException {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
         EntidadesService servicio = ctx.getBean(EntidadesService.class);
-        String id = (String) request.getParameter("idProyecto");
-        Set<Tarea> conjuntoAlertas = new HashSet();
+        Integer idProyecto = Integer.valueOf(request.getParameter("idProyecto"));
+
+
+        Set<Alerta> conjuntoAlertas = new HashSet();
         Set<Informe> conjuntoInformes = new HashSet();
+        Proyecto proyecto = new Proyecto();
         try {
-            Proyecto proyecto = servicio.obtenerProyectoId(Integer.valueOf(id));
+            proyecto = servicio.obtenerPorId(idProyecto);
 
         } catch (InstanceNotFoundException ex) {
             Logger.getLogger(InicioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        List<Requisito> listaRequisitos = servicio.listarRequisitos();
-        for (int i = 0; i < listaRequisitos.size(); i++) {
-            Requisito requisito = listaRequisitos.get(i);
+        request.getSession().setAttribute("idProyecto", String.valueOf(idProyecto));
+        List<Requisito> listaTodosRequisitos = servicio.listarTodosRequisitosPorIdProyecto(idProyecto);
+        List<Requisito> listaIncidencias = new ArrayList<>();
+        List<Requisito> listaRequisitos = new ArrayList<>();
+
+        for (int i = 0; i < listaTodosRequisitos.size(); i++) {
+            Requisito requisito = listaTodosRequisitos.get(i);
+            if (requisito.isEsIncidencia()) {
+                listaIncidencias.add(requisito);
+            } else {
+                listaRequisitos.add(requisito);
+            }
             Set<Tarea> tareas = requisito.getTareas();
 
             for (Tarea t : tareas) {
@@ -84,9 +94,10 @@ public class InicioServlet extends HttpServlet {
         }
 
         request.getSession().setAttribute("listaRequisitos", listaRequisitos);
+        request.getSession().setAttribute("listaIncidencias", listaIncidencias);
         request.getSession().setAttribute("conjuntoAlerta", conjuntoAlertas);
         request.getSession().setAttribute("conjuntoInformes", conjuntoInformes);
-        request.getSession().setAttribute("idProyecto", id);
+        request.getSession().setAttribute("Proyecto", proyecto.getNombre());
         response.sendRedirect("DetalleProyecto.jsp");
 
         processRequest(request, response);
@@ -103,10 +114,9 @@ public class InicioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
         EntidadesService servicio = ctx.getBean(EntidadesService.class);
-//        IEntidadesService servicio = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext()).getBean(EntidadesService.class);
-        List<Proyecto> lista = servicio.listarProyectos();
+        List<Proyecto> lista = servicio.listarProyectosPorUsuario(1);
         request.getSession().setAttribute("lista", lista);
         response.sendRedirect("indexProyectos.jsp");
         processRequest(request, response);

@@ -20,32 +20,33 @@ import modelo.excepciones.InstanceException;
  * @author LUCIA
  */
 public interface IEntidadesService {
-
-    void guardarTipoAlerta(Tipoalerta tipo);
-
-    void actualizarTipoAlerta(Tipoalerta tipo);
-
-    Tipoalerta encontrarPorId(int id) throws InstanceNotFoundException;
-
-    List<Tipoalerta> listarTiposAlertas();
-
-    void guardarAlerta(Alerta alerta);
-
-    void actualizarAlerta(Alerta alerta);
-
-    List<Alerta> listarAlertas();
-
-    List<Proyecto> listarProyectos();
-
-    Proyecto obtenerProyectoId(int id) throws InstanceNotFoundException;
-
-    void guardarRequisito(Requisito requisito);
-
-    List<Requisito> listarRequisitos();
-
-    List<Prioridad> listarPrioridades();
-
-    Prioridad obtenerPrioridadNombre(String nombre) throws InstanceException;
-
-    Usuario obtenerUsuarioId(int id) throws InstanceNotFoundException;
+    
+    public void guardarTipoAlerta(Tipoalerta tipo);
+    public void actualizarTipoAlerta(Tipoalerta tipo);
+    public Tipoalerta encontrarTipoAlertaPorId(int id) throws InstanceNotFoundException;
+    public List<Tipoalerta> listarTiposAlertas();
+    public void guardarAlerta(Alerta alerta );
+    public void actualizarAlerta(Alerta alerta);
+    public List<Alerta> listarAlertas();
+    public List<Proyecto> listarProyectos();
+    public List<Proyecto> listarProyectosPorUsuario(int idUsuario);
+    public Proyecto obtenerPorId(int id) throws InstanceNotFoundException;
+    public List<Requisito> listarTodosRequisitos();
+    public List<Requisito> listarTodosRequisitosPorIdProyecto(int idProyecto);
+    public List<Requisito> listarRequisitosPorIdProyecto(int idProyecto);
+    public List<Requisito> listarIncidenciasPorIdProyecto(int idProyecto);
+    public Prioridad obtenerPrioridadNombre(String nombre) throws InstanceException;
+    public Usuario obtenerUsuarioId(int id) throws InstanceNotFoundException;
+    public Proyecto obtenerProyectoId(int id) throws InstanceNotFoundException;
+    public List<Prioridad> listarPrioridades();
+    public void guardarRequisito(Requisito requisito);
+    public Usuario obtenerUsuarioLogin(String login) throws InstanceException;
+    public Usuario logearse(String login, String pass);
+    public Usuario logearseMail(String mail, String pass);
+    public boolean esSuperAdmin(int id);
+    
+    
+    
+    
+    
 }

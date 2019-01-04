@@ -7,14 +7,15 @@ package modelo.daos.implementacion;
  */
 
 
-import modelo.daos.GenericDao;
 import modelo.daos.interfaces.IClienteDao;
 import modelo.entidades.Cliente;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Arlen
  */
+@Repository
 public class ClienteDao extends GenericDao<Cliente, Integer> implements IClienteDao {
 
 }

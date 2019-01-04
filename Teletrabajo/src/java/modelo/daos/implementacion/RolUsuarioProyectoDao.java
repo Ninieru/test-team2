@@ -6,7 +6,7 @@ package modelo.daos.implementacion;
  and open the template in the editor.
  */
 
-import modelo.daos.GenericDao;
+import modelo.daos.implementacion.GenericDao;
 import modelo.daos.interfaces.IRolUsuarioProyectoDao;
 import modelo.entidades.RolUsuarioProyecto;
 import modelo.entidades.RolUsuarioProyectoId;

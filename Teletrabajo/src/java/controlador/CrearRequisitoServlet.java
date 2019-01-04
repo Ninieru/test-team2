@@ -6,15 +6,24 @@
 package controlador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.management.InstanceNotFoundException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.entidades.Cliente;
 import modelo.entidades.Prioridad;
+import modelo.entidades.Proyecto;
+import modelo.entidades.Requisito;
+import modelo.entidades.Usuario;
+import modelo.excepciones.InstanceException;
 import modelo.servicios.EntidadesService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -23,7 +32,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * @author LUCIA
  */
-@WebServlet(name = "CrearRequisitoServlet", urlPatterns = {"/CrearRequisitoServlet"})
+
 public class CrearRequisitoServlet extends HttpServlet {
 
     /**
@@ -37,7 +46,6 @@ public class CrearRequisitoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
 
     }
 
@@ -53,26 +61,6 @@ public class CrearRequisitoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-        EntidadesService servicio = ctx.getBean(EntidadesService.class);
-        
-        String idProyecto = (String) request.getSession().getAttribute("idProyecto");
-        System.out.println("entro en aki: "+idProyecto);
-        List<Prioridad> listaPrioridades = servicio.listarPrioridades();
-        request.getSession().setAttribute("listaPrioridades", listaPrioridades);
-      //  request.
-                
-        String descripcion = (String) request.getSession().getAttribute("des");
-        Enumeration t =request.getParameterNames();
-        while(t.hasMoreElements()){
-            System.out.println(t.nextElement());
-        }
-//        String prioridad = (String) request.getSession().getAttribute("exampleSelect1");
-        System.out.println("------->descripcion2: "+descripcion+" "+request.getParameter("des"));
-//        System.out.println("------->prioridad2: "+prioridad);
-        response.setContentType("text/html;charset=UTF-8");
-        response.sendRedirect("CrearRequisito.jsp");
         processRequest(request, response);
     }
 
@@ -88,12 +76,50 @@ public class CrearRequisitoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-                
-        String descripcion = (String) request.getSession().getAttribute("descripcion");
-        String prioridad = (String) request.getSession().getAttribute("prioridad");
-        System.out.println("------->descripcion: "+descripcion);
-        System.out.println("------->prioridad: "+prioridad);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        EntidadesService servicio = ctx.getBean(EntidadesService.class);
+
+        String prioridad = (String) request.getParameter("prioridad");
+        String ruta = (String) request.getParameter("file");
+        String incidencia = (String) request.getParameter("incidencia");
+        String idProyecto = (String) request.getSession().getAttribute("idProyecto");
+        boolean esIncidencia = ((incidencia == null) ? false : true);
+        String opcion = (String)request.getSession().getAttribute("opcion");
+
+        try {
+            Prioridad pri = servicio.obtenerPrioridadNombre(prioridad);
+            Proyecto p = servicio.obtenerProyectoId(Integer.valueOf(idProyecto));
+            Usuario usuario = servicio.obtenerUsuarioId(1);
+
+            Requisito requisito = new Requisito();
+
+            requisito.setFecha(new Timestamp(System.currentTimeMillis()));
+            requisito.setFinalizado(false);
+            requisito.setPrioridad(pri);
+            requisito.setProyecto(p);
+            requisito.setRuta(ruta);
+            requisito.setUsuario(usuario);
+            if (opcion.equalsIgnoreCase("requisito")) {
+                requisito.setEsIncidencia(false);
+                List<Requisito> listaRequisitos = servicio.listarTodosRequisitosPorIdProyecto(Integer.valueOf(idProyecto));
+                request.getSession().setAttribute("listaRequisitos", listaRequisitos);
+            } else {
+                requisito.setEsIncidencia(true);
+                List<Requisito> listaIncidencias=servicio.listarIncidenciasPorIdProyecto(Integer.valueOf(idProyecto));
+                request.getSession().setAttribute("listaIncidencias", listaIncidencias);
+            }
+            servicio.guardarRequisito(requisito);
+            
+            
+            response.sendRedirect("DetalleProyecto.jsp");
+
+        } catch (InstanceNotFoundException ex) {
+            Logger.getLogger(CrearRequisitoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstanceException ex) {
+                  }
+
         response.setContentType("text/html;charset=UTF-8");
+        processRequest(request, response);
     }
 
     /**

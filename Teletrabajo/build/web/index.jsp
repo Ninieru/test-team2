@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -10,7 +10,8 @@
     </head>
     <body onload="document.forms[0].submit()">
         
-       <form action="InicioServlet" method="post"></form>
+       <!--form action="TipoAlertaServlet" method="post"></form-->
+       <form action="MiProyectoServlet" method="get" ></form>
     
     </body>
 </html>

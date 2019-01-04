@@ -123,8 +123,7 @@ span {
     padding: 20px 0;
     border-bottom: 1px solid #e24f00;
     background-color: #ffffff1a;
-    /*#ffffff1a*/
-    /*#ffffff2e*/
+    
 }
 
 #sidebar ul li a {
@@ -191,20 +190,74 @@ a.article:hover {
     background: #ffb994 !important;
     color: #fff !important;
 }
+
+/* ---------------------------------------------------
+    BOTON DESPLEGABLE MENU
+----------------------------------------------------- */
 .btn-info{
-    border-color:#e24f00;
+   border-color:#e24f00;
      background: #e24f00 !important;
     color: #fff !important; 
+    cursor: pointer;
     
 }
 .btn-info:hover{
-    border-color:#ffb994!important;
-     background:#ffb994 !important;
-    color:  #fff !important;
-    
-    
+    border-color:#e77233!important;
+    background:#e77233 !important;
+    color:  #fff !important; 
+    cursor: pointer;
 }
 
+.btn-info:focus {
+  border-color: #e24f00;
+  box-shadow: 0 0 0 0.2rem rgba(226,79,0,.2);
+}
+
+.btn-info:active {
+  border-color: #e24f00;
+  box-shadow: 0 0 0 0.2rem rgba(226,79,0,.2);
+}
+
+.btn-info:link {
+  border-color: #e24f00;
+  box-shadow: 0 0 0 0.2rem rgba(226,79,0,.2);
+}
+
+
+/* ---------------------------------------------------
+    texto label
+----------------------------------------------------- */
+
+label {
+    font-weight: normal!important;
+}
+
+/* ---------------------------------------------------
+    MENÚ COLOR TEXT
+----------------------------------------------------- */
+.nav {
+    color: #000000;
+
+}
+
+.nav-item {
+    color: #000000;
+
+}
+/* ---------------------------------------------------
+    bootstrap style
+----------------------------------------------------- */
+.navbar-brand:hover{color:rgba(0,0,0,.9)}
+.navbar-light .navbar-nav .nav-link{color:#212121}
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover{color:#e24f00}
+.navbar-light .navbar-nav .nav-link.disabled{color:rgba(0,0,0,.3)}
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show>.nav-link{color:rgba(0,0,0,.9)}
+.navbar-light .navbar-toggler{color:rgba(0,0,0,.5);
+    border-color:rgba(0,0,0,.1)}
 /* ---------------------------------------------------
     PROYECTOS- TABLAS- ICONOS
 ----------------------------------------------------- */
@@ -236,6 +289,27 @@ a.article:hover {
     color: #e24f00;
 }
 
+.fa-download{
+    color: #455A64;
+}
+
+.fa-download:hover{
+    color: #e24f00;
+}
+
+.fa-info-circle{
+    color: #455A64;
+}
+
+.fa-info-circle:hover{
+    color: #e24f00;
+}
+
+button.icono {
+    background-color:rgba(1,0,0,0);
+    border: none;
+}
+
 /* ---------------------------------------------------
     SEARCH
 ----------------------------------------------------- */
@@ -256,10 +330,9 @@ a.article:hover {
     DETALLE PROYECTO
 ----------------------------------------------------- */
 .proy {
-    color: #999;
-    font-size: 24px;
-    font-weight: bold;
-    margin-left: 80px;
+    color: #212121;
+    font-size: 21px;
+    font-weight: normal;
 
 }
 /* ---------------------------------------------------
@@ -276,14 +349,26 @@ a.article:hover {
     color: #ffffff;
     border-color: #616161;
 }
+
+/* ---------------------------------------------------
+    BOTON CHEQUEA AÑADIR ARCHIVO en crea requisito....
+----------------------------------------------------- */
+[hidden] {
+  display: none !important;
+} 
+
+.btn-light:hover {
+    background-color: #e77233;
+    color:#ffffff;
+}
 /* ---------------------------------------------------
     TEXTO CREAR en crea_requisito crea_informe....
 ----------------------------------------------------- */
 
 .crear {
-    color: #999;
-    font-size: 18px;
-    font-weight: bold;
+    color: #212121;
+    font-size: 21px;
+ 
 
 }
 
@@ -295,32 +380,114 @@ a.article:hover {
     border-color: #e24f00;
     color: #ffffff;
 }
+.añadir:link {
+    background-color: #9e3700;
+    border-color: #9e3700;
+    color: #ffffff;
+}
+.añadir:visited {
+    background-color: #9e3700;
+    border-color: #9e3700;
+    color: #ffffff;
+
+}
 .añadir:hover, .añadir:active {
-    background-color: #616161;
-    border-color: #616161;
+    background-color: #9e3700;
+    border-color: #9e3700;
     color: #ffffff;
 }
 
 .añadir a:active {
-    background-color: #616161;
-    border-color: #616161;
+    background-color: #9e3700;
+    border-color: #9e3700;
     color: #ffffff;
 }
-.añadir:visited {
-    background-color: #616161;
-    border-color: #616161;
-    color: #ffffff;
-}
-.añadir:link {
-    background-color: #616161;
-    border-color: #616161;
-    color: #ffffff;
-}
+
 .añadir:focus {
-    background-color: #616161;
-    border-color: #616161;
+    background-color: #9e3700;
+    border-color: #9e3700;
     color: #ffffff;
 }
+
+.custom-file-input{
+    height: calc(2.2rem + 1px);
+    
+}
+
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+select.form-control:not([size]):not([multiple]) {
+    height: calc(2.8rem + 1px);
+}
+/* ---------------------------------------------------
+    DATATABLES...
+----------------------------------------------------- */
+
+select.form-control-sm:not([size]):not([multiple]) {
+    height: calc(2.5rem + 1px);
+    /*padding: 4px 20px;*/
+}
+
+.form-control {
+    font-size: 11px;
+   height: calc(2.2rem + 1px);
+}
+
+.form-control:focus {
+  border-color: #e77233;
+  box-shadow: 0 0 0 0.2rem rgba(226,79,0,.2);
+}
+
+
+
+.table>thead>tr>th {
+    border-bottom: none;
+}
+
+.table-hover>tbody>tr:hover {
+   /* background-color: #FDE792; */
+   /* background-color: #FFEEAD; */
+    /*background-color: #FFEEF6; */
+     /*background-color: #FFFAB5;*/
+   /* background-color: #F4EED7;*/
+   background-color: #FFF9E4;
+}
+
+
+
+.page-item.active .page-link {
+    background-color: #e77233!important;
+    border-color: #e77233;
+    box-shadow: 0 0 0 0.2rem rgba(226,79,0,.4);
+    cursor: pointer;
+}
+
+
+.page-item.focus .page-link {
+    background-color: #e77233;
+    border-color: #e77233;
+    cursor:pointer;
+}
+
+
+.page-item.next .page-link {
+
+    color: #333;
+    
+}
+
+.page-item.previous .page-link {
+
+    color: #333;
+    
+}
+/* ---------------------------------------------------
+    footer
+----------------------------------------------------- */
 
 
 /* ---------------------------------------------------

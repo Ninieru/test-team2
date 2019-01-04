@@ -4,14 +4,16 @@
  and open the template in the editor.
  */
 
-import modelo.daos.GenericDao;
+import modelo.daos.implementacion.GenericDao;
 import modelo.daos.interfaces.IRolDao;
 import modelo.entidades.Rol;
+import org.springframework.stereotype.Repository;
 
 /**
 
  @author Arlen
  */
+@Repository
 public class RolDao extends GenericDao <Rol,Integer> implements IRolDao
 {   
     
